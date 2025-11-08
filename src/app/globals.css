@@ -1,26 +1,140 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* OpenCivics Global Styles */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* OpenCivics Brand Colors */
+    --oc-red: #fa5273;
+    --oc-green: #4efa9f;
+    --oc-blue: #3b20e9;
+    --oc-grey: #e4e4e4;
+    --oc-slate: #262222;
+    --oc-black: #080808;
+    --oc-white: #ffffff;
+
+    /* Terminal Colors */
+    --terminal-bg: #0a0e1a;
+    --terminal-bg-light: #141b2d;
+    --terminal-fg: #ccd6f6;
+    --terminal-fg-muted: #8892b0;
+    --terminal-border: #1a2332;
+    --terminal-border-bright: #2a3342;
+
+    /* Archetype Colors */
+    --archetype-allies: #64ffda;
+    --archetype-innovators: #c792ea;
+    --archetype-organizers: #ffcb6b;
+    --archetype-patrons: #f07178;
+  }
+
+  body {
+    @apply bg-terminal-bg text-terminal-fg antialiased;
+    min-height: 100vh;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  a {
+    @apply text-oc-green hover:text-oc-blue transition-colors;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Terminal Prompt */
+  .terminal-prompt {
+    @apply font-mono text-oc-green;
+  }
+
+  .terminal-prompt::before {
+    content: 'opencivics@web:~$ ';
+  }
+
+  /* Terminal Cursor */
+  .terminal-cursor {
+    @apply inline-block w-2 h-5 bg-oc-green animate-cursor-blink ml-1;
+  }
+
+  /* Terminal Window */
+  .terminal-window {
+    @apply bg-terminal-bg-light border border-terminal-border rounded-lg p-6 relative overflow-hidden;
+  }
+
+  /* Archetype Badge */
+  .archetype-badge {
+    @apply inline-flex items-center px-4 py-2 rounded-md font-mono text-sm font-bold uppercase tracking-wider;
+  }
+
+  .archetype-badge-allies {
+    @apply bg-archetype-allies/10 text-archetype-allies border border-archetype-allies/30;
+  }
+
+  .archetype-badge-innovators {
+    @apply bg-archetype-innovators/10 text-archetype-innovators border border-archetype-innovators/30;
+  }
+
+  .archetype-badge-organizers {
+    @apply bg-archetype-organizers/10 text-archetype-organizers border border-archetype-organizers/30;
+  }
+
+  .archetype-badge-patrons {
+    @apply bg-archetype-patrons/10 text-archetype-patrons border border-archetype-patrons/30;
+  }
+
+  /* Button Styles */
+  .btn {
+    @apply px-6 py-3 rounded-md font-mono font-bold uppercase tracking-wider transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-oc-green text-oc-black hover:bg-oc-blue hover:text-white shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-oc-green border-2 border-oc-green hover:bg-oc-green hover:text-oc-black;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-terminal-bg-light border border-terminal-border rounded-lg p-6 shadow-lg;
+  }
+
+  /* Progress Bar */
+  .progress-bar {
+    @apply w-full h-2 bg-terminal-border rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-gradient-to-r from-oc-green to-oc-blue transition-all duration-300;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-3 bg-terminal-bg border border-terminal-border rounded-md text-terminal-fg placeholder-terminal-fg-muted focus:outline-none focus:border-oc-green focus:ring-2 focus:ring-oc-green/20 font-mono;
+  }
+
+  .textarea {
+    @apply w-full px-4 py-3 bg-terminal-bg border border-terminal-border rounded-md text-terminal-fg placeholder-terminal-fg-muted focus:outline-none focus:border-oc-green focus:ring-2 focus:ring-oc-green/20 font-mono resize-none;
+  }
+
+  /* Radio and Checkbox Styles */
+  .radio-option {
+    @apply flex items-start gap-3 p-4 border border-terminal-border rounded-md cursor-pointer hover:border-oc-green/50 hover:bg-terminal-bg transition-all duration-200;
+  }
+
+  .radio-option-selected {
+    @apply border-oc-green bg-oc-green/5;
+  }
 }
