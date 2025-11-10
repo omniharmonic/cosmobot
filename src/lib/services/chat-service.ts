@@ -1592,8 +1592,8 @@ Your personalized recommendations will be available shortly!`,
   /**
    * Get enhanced archetype description with specific civic focus
    */
-  private getEnhancedArchetypeInfo(archetype: string): { description: string } {
-    const descriptions = {
+  private getEnhancedArchetypeInfo(archetype: Archetype): { description: string } {
+    const descriptions: Record<Archetype, string> = {
       allies: `🤝 **Allies** are the connective tissue of civic movements. You excel at building bridges between different communities, facilitating dialogue, and helping others discover their role in civic change. Your superpower is creating inclusive spaces where diverse perspectives can contribute to collective solutions.`,
 
       innovators: `🚀 **Innovators** are the builders and creators in civic space. You thrive on designing new tools, systems, and approaches that address civic challenges. Whether through technology, methodology, or creative solutions, you translate ideas into tangible impacts that serve communities.`,
@@ -1611,8 +1611,8 @@ Your personalized recommendations will be available shortly!`,
   /**
    * Get OpenCivics role recommendation based on archetype
    */
-  private getOpenCivicsRoleRecommendation(archetype: string): string {
-    const recommendations = {
+  private getOpenCivicsRoleRecommendation(archetype: Archetype): string {
+    const recommendations: Record<Archetype, string> = {
       allies: `As an **Ally**, we recommend you **join our Network** to connect with diverse civic innovators, participate in dialogue circles, and help bridge different communities working on systems change. You'll thrive in our monthly assemblies and cross-archetype working groups.`,
 
       organizers: `As an **Organizer**, you're perfect for our **Consortium**! You can participate as either a **Citizen** (with governance responsibilities and voting power) or **Collaborator** (contributing to projects and activities). This is where coordinators and movement builders collaborate on strategic initiatives, lead working groups, facilitate assemblies, and orchestrate collective impact.`,
@@ -1628,12 +1628,12 @@ Your personalized recommendations will be available shortly!`,
   /**
    * Get the correct article (a/an) for an archetype
    */
-  private getArticle(archetype: string): string {
+  private getArticle(archetype: Archetype): string {
     // "Allies" and "Organizers" start with vowels -> "an"
     // "Innovators" starts with vowel -> "an"
     // "Patrons" starts with consonant -> "a"
-    const vowelStarting = ['allies', 'organizers', 'innovators'];
-    return vowelStarting.includes(archetype.toLowerCase()) ? 'an' : 'a';
+    const vowelStarting: Archetype[] = ['allies', 'organizers', 'innovators'];
+    return vowelStarting.includes(archetype) ? 'an' : 'a';
   }
 
   /**
