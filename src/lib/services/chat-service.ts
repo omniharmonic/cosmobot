@@ -330,7 +330,7 @@ export class ChatService {
         buttons: responseAnalysis.suggestedActions
       };
 
-      return { message: chatMessage, profile };
+      return { message: chatMessage, profile: profile || undefined };
     } catch (error) {
       console.error('Error in natural conversation:', error);
       return this.handleConversationFallback(message);
@@ -785,7 +785,7 @@ I'd love to learn more about your specific interests so I can recommend the most
         ]
       };
 
-      return { message, profile };
+      return { message, profile: profile || undefined };
     } catch (error) {
       console.error('Error in interest exploration:', error);
       return {
@@ -1546,7 +1546,7 @@ Your personalized recommendations will be available shortly!`,
 
       return {
         message,
-        profile,
+        profile: profile || undefined,
         completed: true // Mark as completed even with fallback
       };
     }
