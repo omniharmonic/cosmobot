@@ -708,7 +708,7 @@ Respond naturally and helpfully:`;
         message,
         profile: completionResult.profile,
         completed: true,
-        metadata: {
+        sessionData: {
           completionResult: completionResult,
           phase: 'results_shown'
         }
