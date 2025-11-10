@@ -1,4 +1,4 @@
-import { Profile, QuizResponse, ArchetypeAnalysis, Archetype } from '@/types';
+import { Profile, QuizResponse, ArchetypeAnalysis, Archetype, QuizQuestion } from '@/types';
 import { QuizService } from '@/lib/quiz/service';
 import { ArchetypeDetectionService } from '@/lib/archetype/detection-service';
 import { ProfileCompletionService } from '@/lib/profile/completion-service';
