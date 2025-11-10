@@ -537,6 +537,7 @@ Respond naturally and helpfully:`;
       name: name,
       email: '',
       primary_archetype: 'allies', // Default archetype, will be updated later
+      primary_confidence: 0, // Will be updated after quiz completion
       quiz_completed: false,
       quiz_started_at: new Date().toISOString(),
       engagement_actions: [],
