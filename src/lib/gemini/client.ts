@@ -14,12 +14,12 @@ export const GENERATION_CONFIG = {
   archetype_analysis: {
     temperature: 0.3,  // Lower temperature for consistency
     topP: 0.8,
-    maxOutputTokens: 2048,
+    maxOutputTokens: 4096,  // Increased to ensure complete JSON responses
   },
   summary_generation: {
     temperature: 0.7,  // More creative for summaries
     topP: 0.9,
-    maxOutputTokens: 1024,
+    maxOutputTokens: 2048,  // Increased for detailed summaries
   },
   chat_response: {
     temperature: 0.6,  // Balanced for conversation

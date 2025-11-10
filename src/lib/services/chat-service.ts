@@ -1503,19 +1503,24 @@ ${openCivicsRole}
       console.error('❌ Error completing comprehensive quiz:', error);
 
       // Try to get the profile and mark it as completed even if AI analysis failed
+      // Skip for ephemeral profiles since they don't exist in the database
+      const isEphemeral = profileId.startsWith('ephemeral_');
       let profile: Profile | null = null;
-      try {
-        profile = await ProfileRepository.getById(profileId);
-        if (profile) {
-          // Mark quiz as completed in database
-          await ProfileRepository.update(profileId, {
-            quiz_completed: true,
-            quiz_completed_at: new Date().toISOString()
-          });
-          console.log('✅ Marked quiz as completed in database');
+      
+      if (!isEphemeral) {
+        try {
+          profile = await ProfileRepository.getById(profileId);
+          if (profile) {
+            // Mark quiz as completed in database
+            await ProfileRepository.update(profileId, {
+              quiz_completed: true,
+              quiz_completed_at: new Date().toISOString()
+            });
+            console.log('✅ Marked quiz as completed in database');
+          }
+        } catch (profileError) {
+          console.error('Error updating profile:', profileError);
         }
-      } catch (profileError) {
-        console.error('Error updating profile:', profileError);
       }
 
       // Provide a graceful fallback with basic archetype assignment
