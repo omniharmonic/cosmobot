@@ -474,43 +474,11 @@ Respond naturally and helpfully:`;
       }
     }
 
-    // Check if we're in quiz phase
+    // Check if we're in quiz phase (profile exists and quiz not completed)
     if (profile && !profile.quiz_completed) {
-      // Count total quiz responses (including resource selection as first question)
-      // Look for the button labels that appear in conversation history
-      const allQuizResponses = userMessages.filter(m =>
-        // Resource selection options (question 0: resource_contribution_primary)
-        m.content.includes('Time to learn and explore civic innovation') ||
-        m.content.includes('Time to coordinate, facilitate, and bring people together') ||
-        m.content.includes('Skills and expertise to build tools, systems, or infrastructure') ||
-        m.content.includes('Financial resources to fund civic innovation and infrastructure') ||
-        m.content.includes('A combination of the above') ||
-        // Participation options (question 1: participation_mode)
-        m.content.includes('Learning & exploring — I want to understand these ideas') ||
-        m.content.includes('Building & prototyping — I want to create tools') ||
-        m.content.includes('Organizing & weaving — I want to facilitate') ||
-        m.content.includes('Funding & resourcing — I want to support') ||
-        m.content.includes('Still exploring — I\'m not sure yet') ||
-        // Engagement stage options (question 2: engagement_stage)
-        m.content.includes('Brand new — Just discovered open civics') ||
-        m.content.includes('Learning — Actively exploring frameworks') ||
-        m.content.includes('Building — Already working on a civic project') ||
-        m.content.includes('Organizing — Leading or facilitating civic work') ||
-        m.content.includes('Funding — Looking to support civic innovation') ||
-        m.content.includes('Experienced — I\'ve been doing this work') ||
-        // Time commitment options (question 3: time_commitment)
-        m.content.includes('Casual — A few hours per month') ||
-        m.content.includes('Regular — A few hours per week') ||
-        m.content.includes('Dedicated — Multiple hours per week') ||
-        m.content.includes('Full-time — This is (or could be) my primary work')
-      );
-
-      // Total questions: resource selection + 3 additional questions = 4 total
-      if (allQuizResponses.length < 4) {
-        return { phase: 'quiz_question', questionIndex: allQuizResponses.length };
-      } else {
-        return { phase: 'archetype_analysis' };
-      }
+      // We're in the comprehensive quiz - let processQuizResponse handle it
+      console.log('✅ Detected quiz_question phase (profile exists, quiz not completed)');
+      return { phase: 'quiz_question' };
     }
 
     // Check for specific button values
@@ -1178,7 +1146,20 @@ What civic topics are you most passionate about?
         totalQuestions: QUIZ_QUESTIONS.length
       });
 
-      // Find the next unanswered question that should be shown
+      // First pass: calculate total questions that will be shown (for accurate numbering)
+      let totalQuestionsToShow = 0;
+      for (let i = 1; i < QUIZ_QUESTIONS.length; i++) {
+        const question = QUIZ_QUESTIONS[i];
+        let shouldShow = true;
+        if (question.show_if) {
+          shouldShow = this.evaluateCondition(question.show_if, responseMap);
+        }
+        if (shouldShow) {
+          totalQuestionsToShow++;
+        }
+      }
+
+      // Second pass: find the next unanswered question
       let nextQuestion = null;
       let questionNumber = 1;
       let questionsShown = 0; // Track questions actually presented to user
@@ -1218,10 +1199,10 @@ What civic topics are you most passionate about?
         return this.completeComprehensiveQuiz(profileId, sessionId);
       }
 
-      console.log(`📝 Presenting question: ${nextQuestion.id} (${questionNumber} of ~13)`);
+      console.log(`📝 Presenting question: ${nextQuestion.id} (${questionNumber} of ${totalQuestionsToShow})`);
 
       // Convert quiz question to ChatMessage format
-      const message = this.formatQuestionAsMessage(nextQuestion, questionNumber, QUIZ_QUESTIONS.length);
+      const message = this.formatQuestionAsMessage(nextQuestion, questionNumber, totalQuestionsToShow);
 
       // Always include the profile in the response so frontend can track it
       return { message, profile: profile || undefined };
