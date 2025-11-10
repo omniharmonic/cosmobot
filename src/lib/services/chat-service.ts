@@ -1505,7 +1505,7 @@ ${openCivicsRole}
       // Try to get the profile and mark it as completed even if AI analysis failed
       let profile: Profile | null = null;
       try {
-        profile = await ProfileRepository.findById(profileId);
+        profile = await ProfileRepository.getById(profileId);
         if (profile) {
           // Mark quiz as completed in database
           await ProfileRepository.update(profileId, {
