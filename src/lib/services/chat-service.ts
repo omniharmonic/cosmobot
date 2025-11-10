@@ -1017,7 +1017,7 @@ ${profile ?
 }`,
         timestamp: new Date(),
         buttons: [
-          { id: 'open_knowledge_commons', label: 'Browse Knowledge Commons', value: 'https://opencivics.super.site/', icon: '📚', url: 'https://opencivics.super.site/' },
+          { id: 'open_knowledge_commons', label: 'Browse Knowledge Commons', value: 'https://opencivics.super.site/', icon: '📚' },
           { id: 'take_quiz_resources', label: 'Take Quiz for Personalized Resources', value: 'start_quiz', icon: '🎯' }
         ]
       };
@@ -1090,7 +1090,7 @@ This will give you access to:
 ${profile ? `As a **${archetype}**, you'll find like-minded collaborators and opportunities that align with your interests!` : 'Complete the quiz first to get matched with the right working groups and opportunities.'}`,
       timestamp: new Date(),
       buttons: [
-        { id: 'open_join_page', label: 'Join OpenCivics', value: 'https://www.opencivics.co/join', icon: '🌐', url: 'https://www.opencivics.co/join' }
+        { id: 'open_join_page', label: 'Join OpenCivics', value: 'https://www.opencivics.co/join', icon: '🌐' }
       ]
     };
 
@@ -1489,8 +1489,8 @@ ${openCivicsRole}
         content,
         timestamp: new Date(),
         buttons: [
-          { id: 'view_resources', label: 'View More Resources', value: 'https://opencivics.super.site/', icon: '📚', url: 'https://opencivics.super.site/' },
-          { id: 'join_network', label: 'Join Our Network', value: 'https://www.opencivics.co/join', icon: '🤝', url: 'https://www.opencivics.co/join' },
+          { id: 'view_resources', label: 'View More Resources', value: 'https://opencivics.super.site/', icon: '📚' },
+          { id: 'join_network', label: 'Join Our Network', value: 'https://www.opencivics.co/join', icon: '🤝' },
           { id: 'start_exploring', label: 'Start Exploring', value: 'explore_interests', icon: '🌟' }
         ]
       };
@@ -1536,8 +1536,8 @@ While I'm still processing your detailed results, you can start exploring the pl
 Your personalized recommendations will be available shortly!`,
         timestamp: new Date(),
         buttons: [
-          { id: 'explore_resources', label: 'Browse Resources', value: 'https://opencivics.super.site/', icon: '📚', url: 'https://opencivics.super.site/' },
-          { id: 'join_network', label: 'Join Our Network', value: 'https://www.opencivics.co/join', icon: '🤝', url: 'https://www.opencivics.co/join' },
+          { id: 'explore_resources', label: 'Browse Resources', value: 'https://opencivics.super.site/', icon: '📚' },
+          { id: 'join_network', label: 'Join Our Network', value: 'https://www.opencivics.co/join', icon: '🤝' },
           { id: 'view_recommendations', label: 'Check for Results', value: 'view_recommendations', icon: '🔄' },
           { id: 'learn_more', label: 'Learn More', value: 'learn_more', icon: '💡' }
         ]
