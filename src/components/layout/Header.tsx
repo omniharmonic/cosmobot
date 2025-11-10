@@ -15,9 +15,9 @@ export default function Header() {
       <div className="flex-1 flex justify-center items-center">
         <div className="flex items-center gap-3">
           <img
-            src={theme === 'dark' ? '/logo-green.svg' : '/logo.svg'}
+            src={theme === 'dark' ? '/logo-green.svg' : '/logo-blue.svg'}
             alt="OpenCivics"
-            className="w-6 h-6"
+            className="w-6 h-6 object-contain"
           />
           <h1 className="text-xl font-header font-semibold text-foreground-primary">
             OpenCivics
