@@ -561,8 +561,7 @@ Respond naturally and helpfully:`;
       response_raw_text: name,
       question_order: 0,
       time_spent_seconds: 0,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      created_at: new Date().toISOString()
     };
     await this.saveQuizResponseToSession(nameResponse, sessionId);
     console.log('💾 Saved name response to session store');
@@ -1323,8 +1322,7 @@ What civic topics are you most passionate about?
         response_raw_text: rawText,
         question_order: currentQuestionIndex,
         time_spent_seconds: 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        created_at: new Date().toISOString()
       };
 
       if (profile.id.startsWith('ephemeral_')) {
