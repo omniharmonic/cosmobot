@@ -732,7 +732,7 @@ Respond naturally and helpfully:`;
 
     return `🎉 **Amazing!** Based on your responses, you're a **${analysis.validated_archetype}** (${confidence}% confidence).
 
-${emoji} **${analysis.validated_archetype.charAt(0).toUpperCase() + analysis.validated_archetype.slice(1)}** ${analysis.archetype_description || 'are essential to the OpenCivics ecosystem.'}
+${emoji} **${analysis.validated_archetype.charAt(0).toUpperCase() + analysis.validated_archetype.slice(1)}** are essential to the OpenCivics ecosystem.
 
 ${onboardingSummary}
 
