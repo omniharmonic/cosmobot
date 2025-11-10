@@ -14,8 +14,8 @@ export default function AppShell({ children }: AppShellProps) {
         <main className="flex-1">
           {children}
         </main>
-        {/* Theme toggle in bottom right */}
-        <div className="fixed bottom-6 right-6 z-50">
+        {/* Theme toggle - responsive positioning */}
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
           <ThemeToggle />
         </div>
       </div>
