@@ -144,8 +144,8 @@ function getMockResources(params: {
       civic_sectors: ['economics', 'environment'],
       innovation_domains: ['regenerative finance', 'collective intelligence'],
       archetype_relevance: ['allies', 'organizers'],
-      created_time: new Date().toISOString(),
-      last_edited_time: new Date().toISOString(),
+      status: 'published',
+      notion_page_id: 'mock-notion-1',
     },
     {
       id: 'mock-2',
@@ -156,8 +156,8 @@ function getMockResources(params: {
       civic_sectors: ['governance', 'technology'],
       innovation_domains: ['blockchain', 'network governance'],
       archetype_relevance: ['innovators', 'organizers'],
-      created_time: new Date().toISOString(),
-      last_edited_time: new Date().toISOString(),
+      status: 'published',
+      notion_page_id: 'mock-notion-2',
     },
     {
       id: 'mock-3',
@@ -168,8 +168,8 @@ function getMockResources(params: {
       civic_sectors: ['community', 'governance'],
       innovation_domains: ['collective intelligence', 'network organizing'],
       archetype_relevance: ['organizers', 'allies'],
-      created_time: new Date().toISOString(),
-      last_edited_time: new Date().toISOString(),
+      status: 'published',
+      notion_page_id: 'mock-notion-3',
     },
     {
       id: 'mock-4',
@@ -180,8 +180,8 @@ function getMockResources(params: {
       civic_sectors: ['technology', 'economics'],
       innovation_domains: ['civic tech', 'impact investing'],
       archetype_relevance: ['patrons', 'innovators'],
-      created_time: new Date().toISOString(),
-      last_edited_time: new Date().toISOString(),
+      status: 'published',
+      notion_page_id: 'mock-notion-4',
     },
     {
       id: 'mock-5',
@@ -192,8 +192,8 @@ function getMockResources(params: {
       civic_sectors: ['environment', 'community'],
       innovation_domains: ['climate tech', 'network coordination'],
       archetype_relevance: ['organizers', 'allies'],
-      created_time: new Date().toISOString(),
-      last_edited_time: new Date().toISOString(),
+      status: 'published',
+      notion_page_id: 'mock-notion-5',
     },
   ];
 
