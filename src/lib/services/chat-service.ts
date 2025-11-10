@@ -108,7 +108,7 @@ export class ChatService {
     const { message, conversationHistory, sessionId } = request;
 
     // Get profile from session store first, then fallback to provided profile
-    const profile = await this.getProfileForSession(request.profile?.id || null, sessionId) || request.profile;
+    const profile = (await this.getProfileForSession(request.profile?.id || null, sessionId) || request.profile) ?? null;
 
     console.log('🔄 Processing message:', { message, profileId: profile?.id, sessionId, historyLength: conversationHistory.length });
 
