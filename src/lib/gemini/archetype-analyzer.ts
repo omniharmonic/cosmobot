@@ -299,9 +299,11 @@ export function normalizeArchetypeScores(
     return acc;
   }, {} as Record<Archetype, number>);
 
-  const primary = Object.entries(normalized).reduce((max, [archetype, score]) =>
-    score > normalized[max as Archetype] ? archetype : max
-  ) as Archetype;
+  const entries = Object.entries(normalized);
+  const primary = entries.reduce((max, [archetype, score]) => {
+    const maxScore = normalized[max as Archetype];
+    return score > maxScore ? archetype as Archetype : max;
+  }, entries[0][0] as Archetype);
 
   const confidence = normalized[primary];
 

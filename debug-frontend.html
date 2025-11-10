@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug OpenCivics Frontend</title>
+</head>
+<body>
+    <h1>OpenCivics Frontend Debug</h1>
+    <div id="messages"></div>
+    <button onclick="testQuizFlow()">Test Quiz Flow</button>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        let messages = [];
+        let profileId = null;
+        let sessionId = 'debug_session_' + Date.now();
+
+        function addMessage(msg) {
+            messages.push(msg);
+            document.getElementById('messages').innerHTML +=
+                `<div><strong>${msg.role}:</strong> ${msg.content}</div>`;
+        }
+
+        async function callAPI(message) {
+            const response = await fetch(`${API_BASE}/api/chat/onboarding`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    conversationHistory: messages,
+                    profileId,
+                    sessionId
+                })
+            });
+
+            const data = await response.json();
+            console.log('API Response:', data);
+
+            if (data.profile) {
+                profileId = data.profile.id;
+                console.log('Profile ID updated to:', profileId);
+            }
+
+            addMessage({
+                role: 'user',
+                content: message
+            });
+
+            addMessage(data.message);
+
+            return data;
+        }
+
+        async function testQuizFlow() {
+            try {
+                console.log('Starting quiz flow...');
+
+                // Start quiz
+                let data = await callAPI('start_quiz');
+
+                // Click Start Quiz button
+                data = await callAPI('Start Quiz');
+
+                // Provide name
+                data = await callAPI('intro_welcome:DebugUser');
+
+                // Answer quiz questions
+                for (let i = 0; i < 4; i++) {
+                    if (data.message.buttons && data.message.buttons.length > 0) {
+                        const answer = data.message.buttons[0].label;
+                        console.log(`Answering question ${i + 1} with: ${answer}`);
+                        data = await callAPI(answer);
+
+                        // Check if completion
+                        if (data.completed || data.message.content.includes('Amazing')) {
+                            console.log('🎉 QUIZ COMPLETED!');
+                            console.log('Final response:', data);
+                            break;
+                        }
+                    } else {
+                        console.log('No buttons available, breaking');
+                        break;
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error in quiz flow:', error);
+            }
+        }
+    </script>
+</body>
+</html>

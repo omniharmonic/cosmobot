@@ -1,0 +1,72 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - img "OpenCivics" [ref=e6]
+        - heading "OpenCivics" [level=1] [ref=e7]
+      - button "Switch to dark mode" [ref=e9]:
+        - img [ref=e10]
+    - main [ref=e12]:
+      - generic [ref=e15]:
+        - generic [ref=e21]:
+          - img [ref=e22]
+          - generic [ref=e27]: OpenCivics AI Assistant
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - paragraph [ref=e33]:
+                  - text: Hi there! 👋 Welcome to
+                  - strong [ref=e34]: OpenCivics
+                  - text: . I'm here to help you explore civic innovation and discover how you can make an impact.
+                - paragraph [ref=e35]: What brings you here today? Are you curious about civic innovation, looking to get involved, or want to learn about your role in creating change?
+              - generic [ref=e36]:
+                - button "🎓 Start Quiz" [disabled] [ref=e37]:
+                  - generic [ref=e38]: 🎓
+                  - generic [ref=e39]: Start Quiz
+                - button "📚 Learn More" [ref=e40] [cursor=pointer]:
+                  - generic [ref=e41]: 📚
+                  - generic [ref=e42]: Learn More
+                - button "🔍 Explore Resources" [ref=e43] [cursor=pointer]:
+                  - generic [ref=e44]: 🔍
+                  - generic [ref=e45]: Explore Resources
+              - generic [ref=e46]: 11:43 PM
+            - generic [ref=e48]:
+              - generic [ref=e49]: Start Quiz
+              - generic [ref=e50]: 11:43 PM
+            - generic [ref=e52]:
+              - paragraph [ref=e54]: Awesome! Let's begin. First, what should I call you?
+              - generic [ref=e55]: 11:43 PM
+            - generic [ref=e57]:
+              - generic [ref=e58]: John Doe
+              - generic [ref=e59]: 11:43 PM
+            - generic [ref=e61]:
+              - paragraph [ref=e63]: Great to meet you, John Doe! If you were to get involved with OpenCivics, what resource would you most naturally contribute?
+              - generic [ref=e64]:
+                - button "🎓 Time to learn and explore civic innovation" [ref=e65] [cursor=pointer]:
+                  - generic [ref=e66]: 🎓
+                  - generic [ref=e67]: Time to learn and explore civic innovation
+                - button "🤝 Time to coordinate, facilitate, and bring people together" [ref=e68] [cursor=pointer]:
+                  - generic [ref=e69]: 🤝
+                  - generic [ref=e70]: Time to coordinate, facilitate, and bring people together
+                - button "⚙️ Skills and expertise to build tools, systems, or infrastructure" [ref=e71] [cursor=pointer]:
+                  - generic [ref=e72]: ⚙️
+                  - generic [ref=e73]: Skills and expertise to build tools, systems, or infrastructure
+                - button "💰 Financial resources to fund civic innovation and infrastructure" [ref=e74] [cursor=pointer]:
+                  - generic [ref=e75]: 💰
+                  - generic [ref=e76]: Financial resources to fund civic innovation and infrastructure
+                - button "🔄 A combination of the above" [ref=e77] [cursor=pointer]:
+                  - generic [ref=e78]: 🔄
+                  - generic [ref=e79]: A combination of the above
+              - generic [ref=e80]: 11:43 PM
+          - generic [ref=e82]:
+            - textbox "Type your message..." [ref=e83]
+            - button [disabled] [ref=e84]:
+              - img [ref=e85]
+  - button "Open Next.js Dev Tools" [ref=e93] [cursor=pointer]:
+    - img [ref=e94]
+  - alert [ref=e99]
+```

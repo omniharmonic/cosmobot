@@ -13,7 +13,7 @@ export class ProfileRepository {
   static async create(data: Partial<ProfileInsert>): Promise<Profile> {
     const { data: profile, error } = await supabase
       .from('profiles')
-      .insert(data)
+      .insert(data as ProfileInsert)
       .select()
       .single();
 
@@ -259,7 +259,7 @@ export class ProfileRepository {
       quiz_version: row.quiz_version || undefined,
       profile_image_url: row.profile_image_url || undefined,
       onboarding_summary: row.onboarding_summary || undefined,
-      engagement_actions: (row.engagement_actions as EngagementAction[]) || [],
+      engagement_actions: (row.engagement_actions as unknown as EngagementAction[]) || [],
       last_active_at: row.last_active_at || undefined,
       metadata: (row.metadata as Record<string, any>) || {},
     };

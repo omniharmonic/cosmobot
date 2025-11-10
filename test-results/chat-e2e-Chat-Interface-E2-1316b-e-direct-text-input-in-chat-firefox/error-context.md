@@ -1,0 +1,60 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - img "OpenCivics" [ref=e6]
+        - heading "OpenCivics" [level=1] [ref=e7]
+      - button "Switch to dark mode" [ref=e9]:
+        - img [ref=e10]
+    - main [ref=e12]:
+      - generic [ref=e15]:
+        - generic [ref=e21]:
+          - img [ref=e22]
+          - generic [ref=e27]: OpenCivics AI Assistant
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - paragraph [ref=e33]:
+                  - text: Hi there! 👋 Welcome to
+                  - strong [ref=e34]: OpenCivics
+                  - text: . I'm here to help you explore civic innovation and discover how you can make an impact.
+                - paragraph [ref=e35]: What brings you here today? Are you curious about civic innovation, looking to get involved, or want to learn about your role in creating change?
+              - generic [ref=e36]:
+                - button "🎓 Start Quiz" [ref=e37] [cursor=pointer]:
+                  - generic [ref=e38]: 🎓
+                  - generic [ref=e39]: Start Quiz
+                - button "📚 Learn More" [ref=e40] [cursor=pointer]:
+                  - generic [ref=e41]: 📚
+                  - generic [ref=e42]: Learn More
+                - button "🔍 Explore Resources" [ref=e43] [cursor=pointer]:
+                  - generic [ref=e44]: 🔍
+                  - generic [ref=e45]: Explore Resources
+              - generic [ref=e46]: 11:42 PM
+            - generic [ref=e48]:
+              - generic [ref=e49]: Hello, I want to learn about OpenCivics
+              - generic [ref=e50]: 11:42 PM
+            - generic [ref=e52]:
+              - paragraph [ref=e54]: I'd love to chat more about your interests in civic innovation! Feel free to ask me anything about OpenCivics, or if you'd like to discover your role in civic change, I can help with that too.
+              - generic [ref=e55]:
+                - button "🎓 Take the Quiz" [ref=e56] [cursor=pointer]:
+                  - generic [ref=e57]: 🎓
+                  - generic [ref=e58]: Take the Quiz
+                - button "📚 Learn More" [ref=e59] [cursor=pointer]:
+                  - generic [ref=e60]: 📚
+                  - generic [ref=e61]: Learn More
+                - button "🔍 Explore Resources" [ref=e62] [cursor=pointer]:
+                  - generic [ref=e63]: 🔍
+                  - generic [ref=e64]: Explore Resources
+              - generic [ref=e65]: 11:42 PM
+          - generic [ref=e67]:
+            - textbox "Type your message..." [ref=e68]
+            - button [disabled] [ref=e69]:
+              - img [ref=e70]
+  - button "Open Next.js Dev Tools" [ref=e78] [cursor=pointer]:
+    - img [ref=e79]
+  - alert [ref=e83]
+```

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Real Frontend Behavior</title>
+</head>
+<body>
+    <h1>Testing Real Frontend Button Clicks</h1>
+    <div id="results"></div>
+    <button onclick="testStartQuiz()">Test Start Quiz Button</button>
+    <button onclick="testLearnMore()">Test Learn More Button</button>
+    <button onclick="testExploreResources()">Test Explore Resources Button</button>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        let sessionId = 'real_frontend_test_' + Date.now();
+        let conversationHistory = [];
+
+        function log(message) {
+            document.getElementById('results').innerHTML += '<div>' + message + '</div>';
+            console.log(message);
+        }
+
+        // Test what happens when we click "Start Quiz" button
+        async function testStartQuiz() {
+            log('🧪 Testing Start Quiz button click...');
+
+            try {
+                // This simulates what the ChatInterface should send when Start Quiz is clicked
+                const response = await fetch(`${API_BASE}/api/chat/onboarding`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Start Quiz', // Button label
+                        conversationHistory: [],
+                        sessionId: sessionId + '_start_quiz'
+                    })
+                });
+
+                if (!response.ok) {
+                    log(`❌ Start Quiz failed: ${response.status}`);
+                    return;
+                }
+
+                const data = await response.json();
+                log(`✅ Start Quiz response: ${data.message.content.substring(0, 100)}...`);
+                log(`   Has buttons: ${data.message.buttons ? data.message.buttons.length : 0}`);
+                log(`   Button labels: ${data.message.buttons ? data.message.buttons.map(b => b.label).join(', ') : 'none'}`);
+
+            } catch (error) {
+                log(`❌ Start Quiz error: ${error.message}`);
+            }
+        }
+
+        // Test what happens when we click "Learn More" button
+        async function testLearnMore() {
+            log('🧪 Testing Learn More button click...');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/onboarding`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Learn More', // Button label
+                        conversationHistory: [],
+                        sessionId: sessionId + '_learn_more'
+                    })
+                });
+
+                if (!response.ok) {
+                    log(`❌ Learn More failed: ${response.status}`);
+                    return;
+                }
+
+                const data = await response.json();
+                log(`✅ Learn More response: ${data.message.content.substring(0, 100)}...`);
+                log(`   Has buttons: ${data.message.buttons ? data.message.buttons.length : 0}`);
+
+            } catch (error) {
+                log(`❌ Learn More error: ${error.message}`);
+            }
+        }
+
+        // Test what happens when we click "Explore Resources" button
+        async function testExploreResources() {
+            log('🧪 Testing Explore Resources button click...');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/chat/onboarding`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'Explore Resources', // Button label
+                        conversationHistory: [],
+                        sessionId: sessionId + '_explore_resources'
+                    })
+                });
+
+                if (!response.ok) {
+                    log(`❌ Explore Resources failed: ${response.status}`);
+                    return;
+                }
+
+                const data = await response.json();
+                log(`✅ Explore Resources response: ${data.message.content.substring(0, 100)}...`);
+                log(`   Has buttons: ${data.message.buttons ? data.message.buttons.length : 0}`);
+
+            } catch (error) {
+                log(`❌ Explore Resources error: ${error.message}`);
+            }
+        }
+
+        // Auto test all buttons on load
+        window.onload = function() {
+            log('🚀 Starting frontend button tests...');
+            setTimeout(testStartQuiz, 500);
+            setTimeout(testLearnMore, 1500);
+            setTimeout(testExploreResources, 2500);
+        };
+    </script>
+</body>
+</html>

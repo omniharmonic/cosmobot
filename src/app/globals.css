@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* OpenCivics Global Styles */
+/* OpenCivics Terminal-Style Chat Interface */
 
 @layer base {
   :root {
+    /* Light Mode */
+    --border-primary: #2563eb;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --accent: #3b82f6;
+
+    /* Terminal Colors - Light */
+    --terminal-bg: #ffffff;
+    --terminal-border: #e5e7eb;
+    --terminal-header-bg: #f3f4f6;
+    --terminal-text: #374151;
+    --terminal-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Chat Colors - Light */
+    --chat-message-user: #f1f5f9;
+    --chat-message-bot: #ffffff;
+    --chat-message-border: #e2e8f0;
+
     /* OpenCivics Brand Colors */
     --oc-red: #fa5273;
     --oc-green: #4efa9f;
@@ -15,14 +35,6 @@
     --oc-black: #080808;
     --oc-white: #ffffff;
 
-    /* Terminal Colors */
-    --terminal-bg: #0a0e1a;
-    --terminal-bg-light: #141b2d;
-    --terminal-fg: #ccd6f6;
-    --terminal-fg-muted: #8892b0;
-    --terminal-border: #1a2332;
-    --terminal-border-bright: #2a3342;
-
     /* Archetype Colors */
     --archetype-allies: #64ffda;
     --archetype-innovators: #c792ea;
@@ -30,111 +42,501 @@
     --archetype-patrons: #f07178;
   }
 
+  .dark {
+    /* Dark Mode */
+    --border-primary: #10b981;
+    --bg-primary: #000000;
+    --bg-secondary: #0f172a;
+    --text-primary: #10b981;
+    --text-secondary: #64748b;
+    --accent: #34d399;
+
+    /* Terminal Colors - Dark */
+    --terminal-bg: #1e1e1e;
+    --terminal-border: #404040;
+    --terminal-header-bg: #2d2d30;
+    --terminal-text: #cccccc;
+    --terminal-shadow: rgba(0, 0, 0, 0.3);
+
+    /* Chat Colors - Dark */
+    --chat-message-user: #1e293b;
+    --chat-message-bot: #0f172a;
+    --chat-message-border: #334155;
+  }
+
   body {
-    @apply bg-terminal-bg text-terminal-fg antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* App Shell */
+  .app-shell {
+    border: 1px solid var(--border-primary);
     min-height: 100vh;
   }
 
-  h1 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  /* Typography */
+  h1, .header-text {
+    font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    color: var(--text-primary);
   }
 
-  h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+  .chat-text {
+    font-family: 'Roboto Mono', 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
   }
 
-  h3 {
-    @apply text-xl md:text-2xl font-semibold;
-  }
-
+  /* Links */
   a {
-    @apply text-oc-green hover:text-oc-blue transition-colors;
+    color: var(--accent);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--text-primary);
   }
 }
 
 @layer components {
-  /* Terminal Prompt */
-  .terminal-prompt {
-    @apply font-mono text-oc-green;
-  }
-
-  .terminal-prompt::before {
-    content: 'opencivics@web:~$ ';
-  }
-
-  /* Terminal Cursor */
-  .terminal-cursor {
-    @apply inline-block w-2 h-5 bg-oc-green animate-cursor-blink ml-1;
-  }
-
   /* Terminal Window */
   .terminal-window {
-    @apply bg-terminal-bg-light border border-terminal-border rounded-lg p-6 relative overflow-hidden;
+    max-width: 900px;
+    width: 95%;
+    height: 80vh;
+    margin: 2rem auto;
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px var(--terminal-shadow), 0 10px 10px -5px var(--terminal-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Archetype Badge */
-  .archetype-badge {
-    @apply inline-flex items-center px-4 py-2 rounded-md font-mono text-sm font-bold uppercase tracking-wider;
+  @media (min-width: 1024px) {
+    .terminal-window {
+      width: 85%;
+      height: 85vh;
+    }
   }
 
-  .archetype-badge-allies {
-    @apply bg-archetype-allies/10 text-archetype-allies border border-archetype-allies/30;
+  /* Terminal Header with macOS Controls */
+  .terminal-header {
+    background: var(--terminal-header-bg);
+    border-bottom: 1px solid var(--terminal-border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 44px;
   }
 
-  .archetype-badge-innovators {
-    @apply bg-archetype-innovators/10 text-archetype-innovators border border-archetype-innovators/30;
+  .terminal-controls {
+    display: flex;
+    gap: 8px;
   }
 
-  .archetype-badge-organizers {
-    @apply bg-archetype-organizers/10 text-archetype-organizers border border-archetype-organizers/30;
+  .terminal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
   }
 
-  .archetype-badge-patrons {
-    @apply bg-archetype-patrons/10 text-archetype-patrons border border-archetype-patrons/30;
+  .terminal-control:hover {
+    opacity: 0.8;
   }
 
-  /* Button Styles */
-  .btn {
-    @apply px-6 py-3 rounded-md font-mono font-bold uppercase tracking-wider transition-all duration-200;
+  .terminal-control.close {
+    background: #ff5f57;
   }
 
-  .btn-primary {
-    @apply bg-oc-green text-oc-black hover:bg-oc-blue hover:text-white shadow-lg hover:shadow-xl;
+  .terminal-control.minimize {
+    background: #ffbd2e;
   }
 
-  .btn-secondary {
-    @apply bg-transparent text-oc-green border-2 border-oc-green hover:bg-oc-green hover:text-oc-black;
+  .terminal-control.maximize {
+    background: #28ca42;
   }
 
-  /* Card Styles */
-  .card {
-    @apply bg-terminal-bg-light border border-terminal-border rounded-lg p-6 shadow-lg;
+  .terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+    margin-left: -60px; /* Center accounting for controls */
   }
 
-  /* Progress Bar */
-  .progress-bar {
-    @apply w-full h-2 bg-terminal-border rounded-full overflow-hidden;
+  .logo-icon {
+    flex-shrink: 0;
   }
 
-  .progress-bar-fill {
-    @apply h-full bg-gradient-to-r from-oc-green to-oc-blue transition-all duration-300;
+  .terminal-title-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--oc-blue);
+    letter-spacing: -0.025em;
   }
 
-  /* Input Styles */
-  .input {
-    @apply w-full px-4 py-3 bg-terminal-bg border border-terminal-border rounded-md text-terminal-fg placeholder-terminal-fg-muted focus:outline-none focus:border-oc-green focus:ring-2 focus:ring-oc-green/20 font-mono;
+  .terminal-spacer {
+    width: 60px; /* Balance the controls */
   }
 
-  .textarea {
-    @apply w-full px-4 py-3 bg-terminal-bg border border-terminal-border rounded-md text-terminal-fg placeholder-terminal-fg-muted focus:outline-none focus:border-oc-green focus:ring-2 focus:ring-oc-green/20 font-mono resize-none;
+  /* Terminal Content */
+  .terminal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
 
-  /* Radio and Checkbox Styles */
-  .radio-option {
-    @apply flex items-start gap-3 p-4 border border-terminal-border rounded-md cursor-pointer hover:border-oc-green/50 hover:bg-terminal-bg transition-all duration-200;
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    scroll-behavior: smooth;
   }
 
-  .radio-option-selected {
-    @apply border-oc-green bg-oc-green/5;
+  .chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: 3px;
+  }
+
+  /* Chat Message */
+  .chat-message {
+    margin-bottom: 1rem;
+    animation: message-appear 0.15s ease-out;
+  }
+
+  .chat-message.user {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .chat-message.bot {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .message-bubble {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--chat-message-border);
+    position: relative;
+  }
+
+  .message-bubble.user {
+    background: var(--chat-message-user);
+    margin-left: 20%;
+  }
+
+  .message-bubble.bot {
+    background: var(--chat-message-bot);
+    margin-right: 20%;
+  }
+
+  /* Message Content */
+  .message-content {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+
+  /* Message Buttons */
+  .message-buttons {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .message-buttons.two-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .message-buttons.one-col {
+    grid-template-columns: 1fr;
+  }
+
+  .message-button {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--chat-message-border);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .message-button:hover {
+    transform: scale(1.02);
+    border-color: var(--border-primary);
+    background: var(--bg-secondary);
+  }
+
+  .message-button:active {
+    transform: scale(0.98);
+  }
+
+  .message-button.selected {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+  }
+
+  .message-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Inline Input */
+  .message-input {
+    margin-top: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--chat-message-border);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    resize: none;
+  }
+
+  .message-input:focus {
+    outline: none;
+    border-color: var(--border-primary);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  }
+
+  .dark .message-input:focus {
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+  }
+
+  /* Terminal Chat Input */
+  .chat-input-container {
+    border-top: 1px solid var(--terminal-border);
+    background: var(--terminal-bg);
+    padding: 16px 20px;
+    margin: 0;
+  }
+
+  .chat-input-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-input {
+    flex: 1;
+    background: var(--terminal-bg);
+    border: 2px solid var(--terminal-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    color: var(--terminal-text);
+    transition: all 0.2s ease;
+    min-width: 0;
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--oc-blue);
+    box-shadow: 0 0 0 3px rgba(59, 32, 233, 0.1);
+  }
+
+  .chat-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  .chat-send-button {
+    background: var(--oc-blue);
+    border: none;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .chat-send-button:hover:not(:disabled) {
+    background: #2d15d1;
+    transform: translateY(-1px);
+  }
+
+  .chat-send-button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .chat-send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 640px) {
+    .terminal-window {
+      width: 98%;
+      height: 95vh;
+      margin: 1rem auto;
+      border-radius: 8px;
+    }
+
+    .terminal-header {
+      padding: 10px 12px;
+    }
+
+    .terminal-title-text {
+      font-size: 13px;
+    }
+
+    .chat-input-container {
+      padding: 12px 16px;
+    }
+
+    .chat-input {
+      padding: 10px 14px;
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .chat-send-button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .chat-input {
+    flex: 1;
+    min-height: 44px;
+    max-height: 120px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--chat-message-border);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    resize: none;
+    line-height: 1.4;
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--border-primary);
+  }
+
+  .chat-send-button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 80px;
+  }
+
+  .chat-send-button:hover:not(:disabled) {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  .chat-send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  .typing-dots {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    animation: typing-pulse 1.4s infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* Chat Animations */
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing-pulse {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
   }
 }

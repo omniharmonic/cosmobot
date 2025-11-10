@@ -1,0 +1,135 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - img "OpenCivics" [ref=e6]
+        - heading "OpenCivics" [level=1] [ref=e7]
+      - button "Switch to dark mode" [ref=e9]:
+        - img [ref=e10]
+    - main [ref=e12]:
+      - generic [ref=e15]:
+        - generic [ref=e21]:
+          - img [ref=e22]
+          - generic [ref=e27]: OpenCivics AI Assistant
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - paragraph [ref=e33]:
+                  - text: Hi there! 👋 Welcome to
+                  - strong [ref=e34]: OpenCivics
+                  - text: . I'm here to help you explore civic innovation and discover how you can make an impact.
+                - paragraph [ref=e35]: What brings you here today? Are you curious about civic innovation, looking to get involved, or want to learn about your role in creating change?
+              - generic [ref=e36]:
+                - button "🎓 Start Quiz" [disabled] [ref=e37]:
+                  - generic [ref=e38]: 🎓
+                  - generic [ref=e39]: Start Quiz
+                - button "📚 Learn More" [ref=e40] [cursor=pointer]:
+                  - generic [ref=e41]: 📚
+                  - generic [ref=e42]: Learn More
+                - button "🔍 Explore Resources" [ref=e43] [cursor=pointer]:
+                  - generic [ref=e44]: 🔍
+                  - generic [ref=e45]: Explore Resources
+              - generic [ref=e46]: 11:42 PM
+            - generic [ref=e48]:
+              - generic [ref=e49]: Start Quiz
+              - generic [ref=e50]: 11:42 PM
+            - generic [ref=e52]:
+              - paragraph [ref=e54]: Awesome! Let's begin. First, what should I call you?
+              - generic [ref=e55]: 11:42 PM
+            - generic [ref=e57]:
+              - generic [ref=e58]: Jane Smith
+              - generic [ref=e59]: 11:42 PM
+            - generic [ref=e61]:
+              - paragraph [ref=e63]: Great to meet you, Jane Smith! If you were to get involved with OpenCivics, what resource would you most naturally contribute?
+              - generic [ref=e64]:
+                - button "🎓 Time to learn and explore civic innovation" [ref=e65] [cursor=pointer]:
+                  - generic [ref=e66]: 🎓
+                  - generic [ref=e67]: Time to learn and explore civic innovation
+                - button "🤝 Time to coordinate, facilitate, and bring people together" [ref=e68] [cursor=pointer]:
+                  - generic [ref=e69]: 🤝
+                  - generic [ref=e70]: Time to coordinate, facilitate, and bring people together
+                - button "⚙️ Skills and expertise to build tools, systems, or infrastructure" [disabled] [ref=e71]:
+                  - generic [ref=e72]: ⚙️
+                  - generic [ref=e73]: Skills and expertise to build tools, systems, or infrastructure
+                - button "💰 Financial resources to fund civic innovation and infrastructure" [ref=e74] [cursor=pointer]:
+                  - generic [ref=e75]: 💰
+                  - generic [ref=e76]: Financial resources to fund civic innovation and infrastructure
+                - button "🔄 A combination of the above" [ref=e77] [cursor=pointer]:
+                  - generic [ref=e78]: 🔄
+                  - generic [ref=e79]: A combination of the above
+              - generic [ref=e80]: 11:42 PM
+            - generic [ref=e82]:
+              - generic [ref=e83]: Skills and expertise to build tools, systems, or infrastructure
+              - generic [ref=e84]: 11:42 PM
+            - generic [ref=e86]:
+              - paragraph [ref=e88]: How do you see yourself participating in open civic innovation?
+              - generic [ref=e89]:
+                - button "🎓 Learning & exploring — I want to understand these ideas and frameworks" [ref=e90] [cursor=pointer]:
+                  - generic [ref=e91]: 🎓
+                  - generic [ref=e92]: Learning & exploring — I want to understand these ideas and frameworks
+                - button "🛠️ Building & prototyping — I want to create tools, systems, or protocols" [disabled] [ref=e93]:
+                  - generic [ref=e94]: 🛠️
+                  - generic [ref=e95]: Building & prototyping — I want to create tools, systems, or protocols
+                - button "🤝 Organizing & weaving — I want to facilitate, coordinate, and bring people together" [ref=e96] [cursor=pointer]:
+                  - generic [ref=e97]: 🤝
+                  - generic [ref=e98]: Organizing & weaving — I want to facilitate, coordinate, and bring people together
+                - button "💰 Funding & resourcing — I want to support civic innovation through capital" [ref=e99] [cursor=pointer]:
+                  - generic [ref=e100]: 💰
+                  - generic [ref=e101]: Funding & resourcing — I want to support civic innovation through capital
+                - button "🔍 Still exploring — I'm not sure yet" [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]: 🔍
+                  - generic [ref=e104]: Still exploring — I'm not sure yet
+              - generic [ref=e105]: 11:42 PM
+            - generic [ref=e107]:
+              - generic [ref=e108]: Building & prototyping — I want to create tools, systems, or protocols
+              - generic [ref=e109]: 11:42 PM
+            - generic [ref=e111]:
+              - paragraph [ref=e113]: Where are you in your civic innovation journey?
+              - generic [ref=e114]:
+                - button "🌱 Brand new — Just discovered open civics and curious to learn more" [ref=e115] [cursor=pointer]:
+                  - generic [ref=e116]: 🌱
+                  - generic [ref=e117]: Brand new — Just discovered open civics and curious to learn more
+                - button "📚 Learning — Actively exploring frameworks and trying to understand the landscape" [ref=e118] [cursor=pointer]:
+                  - generic [ref=e119]: 📚
+                  - generic [ref=e120]: Learning — Actively exploring frameworks and trying to understand the landscape
+                - button "🔧 Building — Already working on a civic project, tool, or system" [disabled] [ref=e121]:
+                  - generic [ref=e122]: 🔧
+                  - generic [ref=e123]: Building — Already working on a civic project, tool, or system
+                - button "👥 Organizing — Leading or facilitating civic work in my community" [ref=e124] [cursor=pointer]:
+                  - generic [ref=e125]: 👥
+                  - generic [ref=e126]: Organizing — Leading or facilitating civic work in my community
+                - button "💰 Funding — Looking to support civic innovation with resources" [ref=e127] [cursor=pointer]:
+                  - generic [ref=e128]: 💰
+                  - generic [ref=e129]: Funding — Looking to support civic innovation with resources
+                - button "🌟 Experienced — I've been doing this work and looking for collaboration opportunities" [ref=e130] [cursor=pointer]:
+                  - generic [ref=e131]: 🌟
+                  - generic [ref=e132]: Experienced — I've been doing this work and looking for collaboration opportunities
+              - generic [ref=e133]: 11:42 PM
+            - generic [ref=e135]:
+              - generic [ref=e136]: Building — Already working on a civic project, tool, or system
+              - generic [ref=e137]: 11:42 PM
+            - generic [ref=e139]:
+              - paragraph [ref=e141]: I'd love to chat more about your interests in civic innovation! Feel free to ask me anything about OpenCivics, or if you'd like to discover your role in civic change, I can help with that too.
+              - generic [ref=e142]:
+                - button "🎓 Take the Quiz" [ref=e143] [cursor=pointer]:
+                  - generic [ref=e144]: 🎓
+                  - generic [ref=e145]: Take the Quiz
+                - button "📚 Learn More" [ref=e146] [cursor=pointer]:
+                  - generic [ref=e147]: 📚
+                  - generic [ref=e148]: Learn More
+                - button "🔍 Explore Resources" [ref=e149] [cursor=pointer]:
+                  - generic [ref=e150]: 🔍
+                  - generic [ref=e151]: Explore Resources
+              - generic [ref=e152]: 11:42 PM
+          - generic [ref=e154]:
+            - textbox "Type your message..." [ref=e155]
+            - button [disabled] [ref=e156]:
+              - img [ref=e157]
+  - button "Open Next.js Dev Tools" [ref=e165] [cursor=pointer]:
+    - img [ref=e166]
+  - alert [ref=e170]
+```

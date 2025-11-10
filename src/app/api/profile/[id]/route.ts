@@ -12,10 +12,7 @@ export async function GET(
   try {
     const { id } = await params;
 
-    const profileRepo = new ProfileRepository();
-    const interestsRepo = new InterestsRepository();
-
-    const profile = await profileRepo.getById(id);
+    const profile = await ProfileRepository.getById(id);
 
     if (!profile) {
       return NextResponse.json(
@@ -27,7 +24,7 @@ export async function GET(
       );
     }
 
-    const interests = await interestsRepo.getByProfileId(id);
+    const interests = await InterestsRepository.getByProfile(id);
 
     return NextResponse.json({
       success: true,

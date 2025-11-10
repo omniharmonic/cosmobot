@@ -25,8 +25,7 @@ export async function POST(request: NextRequest) {
     // Get profile if profile_id is provided
     let profile = null;
     if (profile_id) {
-      const profileRepo = new ProfileRepository();
-      profile = await profileRepo.getById(profile_id);
+      profile = await ProfileRepository.getById(profile_id);
     }
 
     // Handle the chat message

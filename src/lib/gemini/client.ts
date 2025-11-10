@@ -5,8 +5,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 // Model configurations for different use cases
 export const MODELS = {
-  PRO: 'gemini-1.5-pro',      // For complex analysis
-  FLASH: 'gemini-1.5-flash',  // For fast responses
+  PRO: 'gemini-2.5-pro',      // For complex analysis
+  FLASH: 'gemini-2.5-flash',    // For fast responses
 } as const;
 
 // Default generation configurations

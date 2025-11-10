@@ -6,56 +6,64 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // OpenCivics Brand Colors
-        'oc-red': '#fa5273',
-        'oc-green': '#4efa9f',
-        'oc-blue': '#3b20e9',
-        'oc-grey': '#e4e4e4',
-        'oc-slate': '#262222',
-        'oc-black': '#080808',
-        'oc-white': '#ffffff',
+        // New Design System Colors
+        border: {
+          primary: 'var(--border-primary)',
+        },
+        background: {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+        },
+        foreground: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+        },
+        accent: 'var(--accent)',
 
-        // Terminal theme colors (for terminal aesthetic)
-        'terminal': {
-          bg: '#0a0e1a',
-          'bg-light': '#141b2d',
-          fg: '#ccd6f6',
-          'fg-muted': '#8892b0',
-          border: '#1a2332',
-          'border-bright': '#2a3342',
+        // OpenCivics Brand Colors (preserved)
+        'oc': {
+          red: '#fa5273',
+          green: '#4efa9f',
+          blue: '#3b20e9',
+          grey: '#e4e4e4',
+          slate: '#262222',
+          black: '#080808',
+          white: '#ffffff',
         },
 
-        // Archetype colors
+        // Archetype colors (preserved)
         'archetype': {
           allies: '#64ffda',
           innovators: '#c792ea',
           organizers: '#ffcb6b',
           patrons: '#f07178',
         },
+
+        // Chat-specific colors
+        'chat': {
+          'message-user': 'var(--chat-message-user)',
+          'message-bot': 'var(--chat-message-bot)',
+          'message-border': 'var(--chat-message-border)',
+        },
       },
       fontFamily: {
-        mono: [
-          'JetBrains Mono',
-          'Fira Code',
-          'SF Mono',
-          'Monaco',
-          'ui-monospace',
-          'monospace',
-        ],
+        // Modern headers (Rubik/system)
+        'header': ['Rubik', 'system-ui', '-apple-system', 'sans-serif'],
+        // Chat/terminal monospace
+        'chat': ['Roboto Mono', 'JetBrains Mono', 'monospace'],
+        // Body text
         sans: [
-          'Inter',
-          'SF Pro',
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
+          'Segoe UI',
           'sans-serif',
         ],
-        'sharp-grotesk-medium': ['Sharp Grotesk Medium', 'sans-serif'],
-        'sharp-grotesk-light': ['Sharp Grotesk Light', 'sans-serif'],
-        'roboto-mono': ['Roboto Mono', 'monospace'],
+        mono: ['Roboto Mono', 'JetBrains Mono', 'monospace'],
       },
       animation: {
         'cursor-blink': 'cursor-blink 1s step-end infinite',

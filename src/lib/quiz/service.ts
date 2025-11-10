@@ -8,12 +8,8 @@ import { ProfileRepository } from '../repositories/profile-repository';
 import { QuizRepository} from '../repositories/quiz-repository';
 
 export class QuizService {
-  private profileRepo: ProfileRepository;
-  private quizRepo: QuizRepository;
-
   constructor() {
-    this.profileRepo = new ProfileRepository();
-    this.quizRepo = new QuizRepository();
+    // Repository classes use static methods
   }
 
   /**
@@ -27,7 +23,7 @@ export class QuizService {
     quiz_config: typeof QUIZ_CONFIG;
   }> {
     // Create a new profile with default archetype (will be updated after quiz)
-    const profile = await this.profileRepo.create({
+    const profile = await ProfileRepository.create({
       primary_archetype: 'allies', // Default, will be updated
       quiz_completed: false,
       quiz_started_at: new Date().toISOString(),
@@ -74,7 +70,7 @@ export class QuizService {
     const question_order = QUIZ_CONFIG.questions.findIndex(q => q.id === question_id);
 
     // Save the response
-    await this.quizRepo.saveResponse({
+    await QuizRepository.saveResponse({
       profile_id,
       question_id,
       question_text: question.text,
@@ -86,7 +82,7 @@ export class QuizService {
     });
 
     // Get all responses so far to evaluate conditional logic
-    const allResponses = await this.quizRepo.getResponsesByProfile(profile_id);
+    const allResponses = await QuizRepository.getResponsesByProfile(profile_id);
     const responsesMap = allResponses.reduce((acc, r) => {
       acc[r.question_id] = r.response_value;
       return acc;
@@ -100,7 +96,7 @@ export class QuizService {
     const progress_percentage = getProgressPercentage(question_order + 1);
 
     // Update profile's last_active_at
-    await this.profileRepo.update(profile_id, {
+    await ProfileRepository.update(profile_id, {
       last_active_at: new Date().toISOString(),
     });
 
@@ -116,7 +112,7 @@ export class QuizService {
    * Get all responses for a profile
    */
   async getResponses(profile_id: string): Promise<QuizResponse[]> {
-    return this.quizRepo.getResponsesByProfile(profile_id);
+    return QuizRepository.getResponsesByProfile(profile_id);
   }
 
   /**
@@ -128,7 +124,7 @@ export class QuizService {
     progress_percentage: number;
     is_complete: boolean;
   }> {
-    const responses = await this.quizRepo.getResponsesByProfile(profile_id);
+    const responses = await QuizRepository.getResponsesByProfile(profile_id);
 
     // Build responses map
     const responsesMap = responses.reduce((acc, r) => {
@@ -157,7 +153,7 @@ export class QuizService {
    * Check if quiz is complete
    */
   async isQuizComplete(profile_id: string): Promise<boolean> {
-    const profile = await this.profileRepo.getById(profile_id);
+    const profile = await ProfileRepository.getById(profile_id);
     return profile?.quiz_completed || false;
   }
 
@@ -165,7 +161,7 @@ export class QuizService {
    * Mark quiz as complete
    */
   async markQuizComplete(profile_id: string): Promise<void> {
-    await this.profileRepo.update(profile_id, {
+    await ProfileRepository.update(profile_id, {
       quiz_completed: true,
       quiz_completed_at: new Date().toISOString(),
     });
@@ -180,8 +176,8 @@ export class QuizService {
     completion_percentage: number;
     time_started: string | undefined;
   }> {
-    const profile = await this.profileRepo.getById(profile_id);
-    const responses = await this.quizRepo.getResponsesByProfile(profile_id);
+    const profile = await ProfileRepository.getById(profile_id);
+    const responses = await QuizRepository.getResponsesByProfile(profile_id);
 
     return {
       total_questions: QUIZ_CONFIG.questions.length,
@@ -195,7 +191,7 @@ export class QuizService {
    * Get responses as a map for easy access
    */
   async getResponsesMap(profile_id: string): Promise<Record<string, any>> {
-    const responses = await this.quizRepo.getResponsesByProfile(profile_id);
+    const responses = await QuizRepository.getResponsesByProfile(profile_id);
     return responses.reduce((acc, r) => {
       acc[r.question_id] = r.response_value;
       return acc;
