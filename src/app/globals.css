@@ -207,8 +207,15 @@
     letter-spacing: -0.025em;
   }
 
+  .dark .terminal-title-text {
+    color: var(--oc-green);
+  }
+
   .terminal-spacer {
     width: 60px; /* Balance the controls */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   /* Terminal Content */

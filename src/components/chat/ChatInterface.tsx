@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import TypingIndicator from './TypingIndicator';
+import ThemeToggle from '@/components/layout/ThemeToggle';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export interface ChatMessage {
@@ -246,7 +247,12 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
           />
           <span className="terminal-title-text">OpenCivics</span>
         </div>
-        <div className="terminal-spacer"></div>
+        <div className="terminal-spacer">
+          {/* Theme toggle - hidden on mobile, visible on desktop */}
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
 
       {/* Terminal Content */}
