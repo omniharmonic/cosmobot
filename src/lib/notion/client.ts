@@ -201,21 +201,21 @@ function getMockResources(params: {
   let filteredResources = mockResources;
   if (archetypes?.length) {
     filteredResources = filteredResources.filter(resource =>
-      archetypes.some(archetype => resource.archetype_relevance.includes(archetype))
+      resource.archetype_relevance && archetypes.some(archetype => resource.archetype_relevance!.includes(archetype))
     );
   }
 
   // Filter by civic sectors
   if (civicSectors?.length) {
     filteredResources = filteredResources.filter(resource =>
-      civicSectors.some(sector => resource.civic_sectors.includes(sector))
+      resource.civic_sectors && civicSectors.some(sector => resource.civic_sectors!.includes(sector))
     );
   }
 
   // Filter by innovation domains
   if (innovationDomains?.length) {
     filteredResources = filteredResources.filter(resource =>
-      innovationDomains.some(domain => resource.innovation_domains.includes(domain))
+      resource.innovation_domains && innovationDomains.some(domain => resource.innovation_domains!.includes(domain))
     );
   }
 
