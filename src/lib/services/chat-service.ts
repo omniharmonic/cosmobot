@@ -1232,8 +1232,7 @@ What civic topics are you most passionate about?
           role: 'bot',
           content: 'Sorry, I encountered an error with the quiz. Let me try again.',
           timestamp: new Date()
-        },
-        profile: profile || undefined
+        }
       };
     }
   }
