@@ -774,7 +774,7 @@ I'd love to learn more about your specific interests so I can recommend the most
       // Generate response with resource cards
       const resourceCards = this.generateResourceCards(resources);
 
-      const message: ChatMessage = {
+      const botMessage: ChatMessage = {
         role: 'bot',
         content: `Perfect! I found some excellent resources related to ${extractedData.summary.toLowerCase()}:\n\n${resourceCards}\n\nWould you like to explore any of these, or tell me about other interests?`,
         timestamp: new Date(),
@@ -785,7 +785,7 @@ I'd love to learn more about your specific interests so I can recommend the most
         ]
       };
 
-      return { message, profile: profile || undefined };
+      return { message: botMessage, profile: profile || undefined };
     } catch (error) {
       console.error('Error in interest exploration:', error);
       return {
