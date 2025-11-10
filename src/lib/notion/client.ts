@@ -113,7 +113,8 @@ export async function searchResources(params: {
 
     return resources;
   } catch (error) {
-    console.error('Error searching Notion resources:', error.message || error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error searching Notion resources:', errorMessage);
     // Fall back to mock resources on error
     console.log('Falling back to mock resources due to Notion error');
     return getMockResources(params);
