@@ -1,8 +1,11 @@
 'use client';
 
 import ThemeToggle from './ThemeToggle';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Header() {
+  const { theme } = useTheme();
+
   return (
     <header className="h-16 border-b border-border-primary bg-background-primary flex items-center justify-between px-6">
       {/* Left spacer */}
@@ -11,7 +14,11 @@ export default function Header() {
       {/* Centered Logo */}
       <div className="flex-1 flex justify-center items-center">
         <div className="flex items-center gap-3">
-          <img src="/logo.svg" alt="OpenCivics" className="w-6 h-6" />
+          <img
+            src={theme === 'dark' ? '/logo-green.svg' : '/logo.svg'}
+            alt="OpenCivics"
+            className="w-6 h-6"
+          />
           <h1 className="text-xl font-header font-semibold text-foreground-primary">
             OpenCivics
           </h1>

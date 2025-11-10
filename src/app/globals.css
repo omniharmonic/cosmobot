@@ -89,7 +89,6 @@
 
   /* App Shell */
   .app-shell {
-    border: 1px solid var(--border-primary);
     min-height: 100vh;
     min-height: 100dvh;
   }

@@ -249,7 +249,7 @@ export default function ChatInterface({ initialMessage }: ChatInterfaceProps) {
         </div>
         <div className="terminal-spacer">
           {/* Theme toggle - hidden on mobile, visible on desktop */}
-          <div className="hidden sm:block">
+          <div className="block">
             <ThemeToggle />
           </div>
         </div>
