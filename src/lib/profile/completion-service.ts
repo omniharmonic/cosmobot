@@ -124,6 +124,7 @@ export class ProfileCompletionService {
         name: 'User',
         email: '',
         primary_archetype: analysis.validated_archetype,
+        primary_confidence: analysis.confidence,
         quiz_completed: true,
         quiz_started_at: new Date().toISOString(),
         engagement_actions: [],
