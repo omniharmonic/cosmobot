@@ -1,4 +1,4 @@
-import { Profile, QuizResponse } from '@/types';
+import { Profile, QuizResponse, ArchetypeAnalysis, Archetype } from '@/types';
 import { QuizService } from '@/lib/quiz/service';
 import { ArchetypeDetectionService } from '@/lib/archetype/detection-service';
 import { ProfileCompletionService } from '@/lib/profile/completion-service';
@@ -719,8 +719,8 @@ Respond naturally and helpfully:`;
     }
   }
 
-  private generateArchetypeResultsMessage(analysis: any, onboardingSummary: string): string {
-    const archetypeEmojis = {
+  private generateArchetypeResultsMessage(analysis: ArchetypeAnalysis, onboardingSummary: string): string {
+    const archetypeEmojis: Record<Archetype, string> = {
       allies: '🤝',
       innovators: '🚀',
       organizers: '🌐',
